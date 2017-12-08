@@ -7,7 +7,19 @@ import {
 } from 'react-native';
 import Component from '../components/Component';
 
-const WalletItem = (wallet) => (
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  tabBarInfoText: {
+    fontSize: 17,
+    color: 'rgba(96,100,109, 1)',
+    textAlign: 'center',
+  },
+});
+
+const WalletItem = wallet => (
   <View key={wallet}>
     <Text style={styles.tabBarInfoText}>{wallet}</Text>
     <Button onPress={() => true} title="Remove" />
@@ -26,15 +38,3 @@ export default class Wallets extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-});

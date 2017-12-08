@@ -8,22 +8,35 @@ import {
 import Btn from '../components/Button';
 import Component from '../components/Component';
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    padding: 20,
+  },
+  logo: {
+    fontSize: 30,
+    color: 'rgba(96,100,109, 1)',
+    textAlign: 'center',
+  },
+});
+
 export default class Main extends Component {
   state = {
     wallets: [],
     qrOpen: false,
   }
 
-  async componentWillMount(){
+  async componentWillMount() {
     const wallets = await AsyncStorage.getItem('wallets');
     this.setState({ wallets: wallets ? JSON.parse(wallets) : ['a'] });
   }
 
-  openQRWallet(title) {
+  openQRWallet() {
     this.props.navigation.navigate('QRReader', { onQR: this.addWallet });
   }
 
-  openQRTransaction(){
+  openQRTransaction() {
     //this.props.navigation.navigate('QRReader', { onQR: this.signTransaction });
     //this.props.navigation.navigate('Sign', { transaction: '' });
     this.props.navigation.navigate('QR', { hexTx: 'FFFFFFFF' })
@@ -39,7 +52,7 @@ export default class Main extends Component {
   }
 
   signTransaction(data) {
-    this.props.navigation.navigate('SignTransaction', { data: data })
+    this.props.navigation.navigate('SignTransaction', { data });
   }
 
   render() {
@@ -57,18 +70,5 @@ export default class Main extends Component {
       </View>
     );
   }
-
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    padding: 20
-  },
-  logo: {
-    fontSize: 30,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-});

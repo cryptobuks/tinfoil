@@ -13,7 +13,7 @@ import { NavigationActions } from 'react-navigation'
 
 
 const formatSatoshis = (satoshis) => {
-  if(satoshis > 1e7) {
+  if (satoshis > 1e7) {
     return `${satoshis / 1e8} BTC`;
   } else if (satoshis > 1e5) {
     return `${satoshis / 1e6} bits`;
@@ -56,7 +56,7 @@ export default class SignScreen extends Component {
     wallets: [],
   };
 
-  transactionOutputs(){
+  transactionOutputs() {
     const tx = BitcoinJS.Transaction.fromHex(this.state.hexTx);
     return tx.outs.map(({ script, value }) => ({
       value: value,
