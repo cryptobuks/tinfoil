@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-native-scripts": "1.8.1",
+    "babel-plugin-import-glob": "^2.0.0",
+    "babel-plugin-module-resolver": "^3.0.0",
     "jest-expo": "23.0.0",
+    "react-native-scripts": "1.8.1",
     "react-test-renderer": "16.0.0"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
@@ -19,8 +21,19 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "assert": "^1.4.1",
+    "bitcoinjs-lib": "^3.3.1",
+    "blockies-bmp": "^0.1.2",
+    "buffer": "^5.0.8",
+    "class-autobind": "^0.1.4",
+    "events": "^1.1.1",
     "expo": "^23.0.4",
+    "lodash": "^4.17.4",
     "react": "16.0.0",
-    "react-native": "0.50.3"
+    "react-native": "0.50.3",
+    "react-native-elements": "^0.18.5",
+    "react-native-qrcode-image": "^0.2.8",
+    "react-navigation": "^1.0.0-beta.21",
+    "stream-browserify": "^2.0.1"
   }
 }
