@@ -1,58 +1,9 @@
 import React from 'react';
-import { bool, func } from 'prop-types';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { BarCodeScanner, Permissions } from 'expo';
 import Component from '../components/Component';
 
 const { Constants: { isDevice } } = Expo; // eslint-disable-line
-
-class QRReader extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      hasCameraPermission: false,
-    };
-  }
-
-  async componentWillMount(nextProps) {
-    const { status } = await Permissions.askAsync(Permissions.CAMERA);
-    this.setState({ hasCameraPermission: status === 'granted' });
-  }
-
-  onBarCodeRead({ data }) {
-    this.props.navigation.state.params.onQR(data);
-    this.props.navigation.goBack();
-  }
-
-  render() {
-    const { onClose } = this.props;
-    const { hasCameraPermission } = this.state;
-
-    return (
-      <View style={styles.QRReader}>
-        { isDevice && hasCameraPermission &&
-          <BarCodeScanner
-            barCodeTypes={[BarCodeScanner.Constants.BarCodeType.qr]}
-            onBarCodeRead={this.onBarCodeRead}
-            style={StyleSheet.absoluteFill}
-          /> }
-        <View style={styles.border}>
-          { hasCameraPermission
-              ? <Text style={styles.hint}>Place the code inside the frame</Text>
-              : <Text style={styles.hint}>Give the app camera permissions in order to read QR codes</Text>
-          }
-        </View>
-        <View style={styles.content} >
-          <View style={styles.border} />
-          <View style={styles.area} />
-          <View style={styles.border} />
-        </View>
-        <View style={styles.border} />
-      </View>
-    );
-  }
-}
 
 const styles = StyleSheet.create({
   QRReader: {
@@ -93,4 +44,51 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
 });
-export default QRReader;
+
+export default class QRReader extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hasCameraPermission: false,
+    };
+  }
+
+  async componentWillMount() {
+    const { status } = await Permissions.askAsync(Permissions.CAMERA);
+    this.setState({ hasCameraPermission: status === 'granted' });
+  }
+
+  onBarCodeRead({ data }) {
+    console.log('onBarCodeRead');
+    this.props.navigation.goBack();
+    this.props.navigation.state.params.onQR(data);
+  }
+
+  render() {
+    const { hasCameraPermission } = this.state;
+
+    return (
+      <View style={styles.QRReader}>
+        { isDevice && hasCameraPermission &&
+          <BarCodeScanner
+            barCodeTypes={[BarCodeScanner.Constants.BarCodeType.qr]}
+            onBarCodeRead={this.onBarCodeRead}
+            style={StyleSheet.absoluteFill}
+          /> }
+        <View style={styles.border}>
+          { hasCameraPermission
+              ? <Text style={styles.hint}>Place the code inside the frame</Text>
+              : <Text style={styles.hint}>Give the app camera permissions in order to read QR codes</Text>
+          }
+        </View>
+        <View style={styles.content} >
+          <View style={styles.border} />
+          <View style={styles.area} />
+          <View style={styles.border} />
+        </View>
+        <View style={styles.border} />
+      </View>
+    );
+  }
+}

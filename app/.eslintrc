@@ -16,7 +16,9 @@
     "import/no-unresolved": 0,
     "import/no-extraneous-dependencies": 0,
     "import/no-named-as-default": 0,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "react/no-array-index-key": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/prop-types": [1, { "ignore": "navigation" }]
   },
   "globals": {
     "atom": true

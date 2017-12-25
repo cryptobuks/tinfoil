@@ -1,0 +1,9 @@
+{
+  "expo": {
+    "sdkVersion": "23.0.0",
+    "privacy": "public",
+    "githubUrl": "https://github.com/dvdbng/tinfoil",
+    "orientation": "portrait",
+    "icon": "assets/icon.png"
+  }
+}

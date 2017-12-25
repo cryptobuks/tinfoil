@@ -1,53 +1,47 @@
 import {
-  AsyncStorage,
   Dimensions,
-  StyleSheet,
   Text,
   View,
 } from 'react-native';
-import _ from 'lodash';
+import React from 'react';
+import QRCode from '../components/QRCode';
 import { Button, Component } from '../components/*.js';
-import QRCode from 'react-native-qrcode-image';
+import styles from '../styles';
 
-
-const styles = StyleSheet.create({
-  qr: {
-  },
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    padding: 10
-  }
-
-});
 
 export default class QR extends Component {
+  constructor() {
+    super();
+    this.state = { loading: true };
+    setTimeout(() => this.setState({ loading: false }), 100);
+  }
 
   close() {
     this.props.navigation.goBack();
   }
 
   render() {
+    const { loading } = this.state;
     const { hexTx } = this.props.navigation.state.params;
     const rawTx = Buffer.from(hexTx, 'hex').toString('base64');
-    const { width, height } = Dimensions.get('window');
+    const { width } = Dimensions.get('window');
     return (
-      <View style={styles.container}>
+      <View style={styles.tight_container}>
         <Text>
           This QR code contains the signed transaction.
           Scan it with an online-connected device to boardcast it to
           the internet.
         </Text>
         <View flex={1} />
-        <View style={styles.qr}>
-          <QRCode size={width - 20} value={rawTx} />
+        <View>
+          { loading
+            ? <Text>Loading...</Text>
+            : <QRCode size={width - 20} value={rawTx} />
+          }
         </View>
         <View flex={1} />
         <Button onPress={this.close} title="CLOSE" />
       </View>
     );
   }
-
 }
-
-
