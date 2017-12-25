@@ -24,5 +24,5 @@ rm xx00 xx01 xx02
 name=tinfoil_${VERSION}_SHA256_$(sha256sum out.html  | cut -d' ' -f1).html
 mv out.html $name
 
-sed "s#REDIR_PAGE#web/$name#" redir_template.html > ../index.html
+sed "s#REDIR_PAGE#$name#" redir_template.html > index.html
 
