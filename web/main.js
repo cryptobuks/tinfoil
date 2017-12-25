@@ -4,8 +4,6 @@ var BitcoinJS = require('bitcoinjs-lib');
 import coinselect from 'coinselect';
 /* global w69b:true */
 
-w69b.qr.decoding.setWorkerUrl('node_modules/barcode.js/w69b.qrcode.decodeworker.min.js');
-
 const SATOSHI = 1e8;
 const state = {};
 
@@ -30,6 +28,16 @@ export function broadcast() {
 function $i(id) {
   return document.getElementById(id);
 }
+
+(function setupWorker() {
+  const workerScript = $i('qrcode_worker')
+  if (workerScript) {
+    const blob = new Blob([workerScript.textContent], { type: "text/javascript" });
+    w69b.qr.decoding.setWorkerUrl(window.URL.createObjectURL(blob));
+  } else {
+    w69b.qr.decoding.setWorkerUrl('node_modules/barcode.js/w69b.qrcode.decodeworker.min.js');
+  }
+})();
 
 function setModal(elmId, show) {
   const elm = $i(elmId);
