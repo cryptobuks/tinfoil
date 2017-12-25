@@ -8,7 +8,6 @@ Tinfoil lets you convert an old smartphone into a secure cryptocurrency hardware
 - (Optional) - Do a factory reset of your smartphone
 - Install Tinfoil app
 - Switch on airplane mode
-- (Optional) wrap the phone in aluminium foil. The aluminium will act as a faraday cage and prevent an attacker from contacting the phone, even if the wifi/Bluetooth chips have backdoors/exploits that allow them to transmit data while airplane mode is on. You want your money to be secured by the laws of physics, not by software.
 
 # How to transact
 
@@ -35,3 +34,4 @@ You will need an online device (phone or laptop) in addition to your offline sma
 - Keep your wallets paper backups in a safe place. Keep redundant backups. The paper backup encryption is easy to brute-force.
 - Don't charge your Tinfoil device in public USB ports, use a charger you trust, or a power only USB cable.
 - Keep your Tinfoil device safe, the encrypted private keys can theoretically be extracted if you have the device.
+- Switch your Tinfoil device off when you are not using it, and if you can, remove the battery.
